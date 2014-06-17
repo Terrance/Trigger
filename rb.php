@@ -1,39 +1,46 @@
-<html>
+<?
+if (isset($_GET["q"])) {
+    if (!file_exists("/var/data/rb")) {
+        http_response_code(503);
+    }
+    return;
+}
+?><html>
     <head>
         <title>Error 404 (Not Found)!!1</title>
-        <link rel="icon" href="http://g.etfv.co/http://www.google.com"><?
+        <link rel="icon" href="http://g.etfv.co/http://www.google.com">
+<?
 if (isset($_GET["d"])) {
-    if (file_exists(".rb")) {
-        unlink(".rb");
+    if (file_exists("/var/data/rb")) {
+        unlink("/var/data/rb");
         $out = "Undeployed";
     } else {
-        fclose(fopen(".rb", "w"));
+        fclose(fopen("/var/data/rb", "w"));
         $out = "Deployed";
     }
 ?>
-
         <script>
         document.title = ">> <? print $out; ?>";
         setTimeout("document.title = \"Error 404 (Not Found)!!1\";", 2000);
-        </script><?
+        </script>
+<?
 } else {
     $i = strtolower($_GET["i"]);
     if ($i) {
         $is = Array("kfc" => "http://img259.imageshack.us/img259/8619/2204355.swf",
                     "gotye" => "http://www.youtube.com/watch?v=8UVNT4wvIGY",
                     "nyan" => "http://nyan.cat",
-                    "rickroll" => "http://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                    "rroll" => "http://www.youtube.com/watch?v=dQw4w9WgXcQ");
         if (array_key_exists($i, $is)) {
             header("Location: rb.php#" . $is[$i]);
         }
     }
 ?>
-
         <script>
         var ajax = (window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP"));
         var url;
         function poll() {
-            ajax.open("GET", ".rb", true);
+            ajax.open("GET", "rb.php?q", true);
             ajax.send();
         }
         function checkHash() {
@@ -63,10 +70,10 @@ if (isset($_GET["d"])) {
             setTimeout("document.title = \">> To end of address\";", 4000);
             setTimeout("document.title = \"Error 404 (Not Found)!!1\";", 6000);
         }
-        </script><?
+        </script>
+<?
 }
 ?>
-
         <style>
         body {
             margin: 0;
@@ -82,3 +89,4 @@ if (isset($_GET["d"])) {
         <iframe src="http://www.google.com/404"></iframe>
     </body>
 </html>
+
