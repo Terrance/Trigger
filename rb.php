@@ -1,6 +1,6 @@
 <?
 if (isset($_GET["q"])) {
-    if (!file_exists("/var/data/rb")) {
+    if (!file_exists(getenv("DATA") . "rb")) {
         http_response_code(503);
     }
     return;
@@ -11,11 +11,11 @@ if (isset($_GET["q"])) {
         <link rel="icon" href="http://g.etfv.co/http://www.google.com">
 <?
 if (isset($_GET["d"])) {
-    if (file_exists("/var/data/rb")) {
-        unlink("/var/data/rb");
+    if (file_exists(getenv("DATA") . "rb")) {
+        unlink(["ENV_DATA"] . "rb");
         $out = "Undeployed";
     } else {
-        fclose(fopen("/var/data/rb", "w"));
+        fclose(fopen(getenv("DATA") . "rb", "w"));
         $out = "Deployed";
     }
 ?>
