@@ -35,7 +35,7 @@ if (array_key_exists("d", $_GET)) {
     </head>
     <body>
         <iframe src="<?=htmlspecialchars($frame)?>"></iframe>
-        <script src="lib/js/jquery.min.js"></script>
+        <script src="<?=getenv("CDNURL")?>js/jquery.min.js"></script>
         <script>
         var url = "<?=addslashes($url)?>";
         function poll() {
@@ -62,7 +62,11 @@ if (array_key_exists("d", $_GET)) {
 <html>
     <head>
         <title>&raquo; Trigger</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <style>
+        h1 {
+            margin: 0;
+        }
         input[type=submit] {
             font-size: 1em;
         }
@@ -72,7 +76,7 @@ if (array_key_exists("d", $_GET)) {
         <h1>&raquo; Trigger</h1>
         <h2>Deploy to targets</h2>
         <input id="submit_deploy" type="submit" value="Deploy!">
-        <input id="check_deploy" type="submit" value="Check status">
+        <input id="check_deploy" type="submit" value="Check">
         <em id="status_deploy"></em>
         <h2>Create new target</h2>
         <form id="new" target="_blank">
@@ -88,25 +92,29 @@ if (array_key_exists("d", $_GET)) {
             </h3>
             <label for="url">URL:</label>
             <input id="url" name="t" required>
-            <em>Page to redirect to when triggered.</em>
+            <br>
+            <em>Page to display when triggered.</em>
             <h3>Disguise
                 <select id="preset_disg">
                     <option value="">Presets...</option>
                     <option value="bing">Bing</option>
                     <option value="google404">Google (404)</option>
+                    <option value="stagbeauty">Staggering Beauty</option>
                 </select>
             </h3>
             <label for="frame">URL:</label>
             <input id="frame" name="tf">
-            <em>Page to display whilst waiting for a trigger.</em>
             <br>
+            <em>Page to show whilst waiting.</em>
+            <br><br>
             <label for="title">Title:</label>
             <input id="title" name="tt">
-            <em>Title of the page whilst waiting for a trigger.</em>
+            <br>
+            <em>Title of the page whilst waiting.</em>
             <br><br>
             <input type="submit" value="Prepare!">
         </form>
-        <script src="lib/js/jquery.min.js"></script>
+        <script src="<?=getenv("CDNURL")?>js/jquery.min.js"></script>
         <script>
         $(document).ready(function(e) {
             var depl;
@@ -160,7 +168,8 @@ if (array_key_exists("d", $_GET)) {
             $("#preset_disg").change(function(e) {
                 var presets = {
                     "bing": ["https://www.bing.com", "Bing"],
-                    "google404": ["https://www.google.com/404", "Error 404 (Not Found)!!1"]
+                    "google404": ["https://www.google.com/404", "Error 404 (Not Found)!!1"],
+                    "stagbeauty": ["http://www.staggeringbeauty.com", "Staggering Beauty"]
                 };
                 if (this.value in presets) {
                     $("#frame").val(presets[this.value][0]);
