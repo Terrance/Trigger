@@ -35,7 +35,7 @@ if (array_key_exists("d", $_GET)) {
     </head>
     <body>
         <iframe src="<?=htmlspecialchars($frame)?>"></iframe>
-        <script src="<?=getenv("CDNURL")?>js/jquery.min.js"></script>
+        <script src="/.cdn/js/jquery.min.js"></script>
         <script>
         var url = "<?=addslashes($url)?>";
         function poll() {
@@ -114,7 +114,7 @@ if (array_key_exists("d", $_GET)) {
             <br><br>
             <input type="submit" value="Prepare!">
         </form>
-        <script src="<?=getenv("CDNURL")?>js/jquery.min.js"></script>
+        <script src="/.cdn/js/jquery.min.js"></script>
         <script>
         $(document).ready(function(e) {
             var depl;
