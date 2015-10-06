@@ -62,6 +62,8 @@ if (array_key_exists("d", $_GET)) {
 <html>
     <head>
         <title>&raquo; Trigger</title>
+        <meta name="author" content="Ollie Terrance">
+        <meta name="description" content="Trigger is a script which allows you to remotely load a web page on one device from another.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <style>
         h1 {
